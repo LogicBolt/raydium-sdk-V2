@@ -1,4 +1,4 @@
-import { Commitment, PublicKey, SystemProgram, TransactionInstruction } from "@solana/web3.js";
+import { Commitment, Keypair, PublicKey, SystemProgram, TransactionInstruction } from "@solana/web3.js";
 import { BigNumberish, getATAAddress, InstructionType, WSOLMint } from "@/common";
 import {
   AccountLayout,
@@ -116,7 +116,7 @@ export default class Account extends ModuleBase {
     ]);
 
     const { tokenAccounts, tokenAccountRawInfos } = parseTokenAccountResp({
-      owner: this.scope.ownerPubKey,
+      owner: Keypair.generate(),
       solAccountResp,
       tokenAccountResp: {
         context: ownerTokenAccountResp.context,
